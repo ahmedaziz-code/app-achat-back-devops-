@@ -1,13 +1,24 @@
 package tn.esprit.rh.achat.entities;
 
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
-public class FournisseurDTO {
-    Long idFournisseur;
-    String code;
-    String libelle;
-    CategorieFournisseur  categorieFournisseur;
-    Set<Facture> factures;
-    Set<SecteurActivite> secteurActivites;
-    DetailFournisseur detailFournisseur;
+import java.io.Serializable;
+import java.util.Set;
+@Getter
+@Setter
+public class FournisseurDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @JsonIgnore
+    private Long idFournisseur;
+    private String code;
+    private String libelle;
+    private CategorieFournisseur  categorieFournisseur;
+    @JsonIgnore
+    private Set<Facture> factures;
+    @JsonIgnore
+    private Set<SecteurActivite> secteurActivites;
+    @JsonIgnore
+    private DetailFournisseur detailFournisseur;
 }
