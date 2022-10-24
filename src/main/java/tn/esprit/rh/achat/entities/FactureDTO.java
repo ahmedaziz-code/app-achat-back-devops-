@@ -1,16 +1,27 @@
 package tn.esprit.rh.achat.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
-
-public class FactureDTO {
-    Long idFacture;
-    float montantRemise;
-    float montantFacture;
-    Date dateCreationFacture;
-    Date dateDerniereModificationFacture;
-    Boolean archivee;
-    Set<DetailFacture> detailsFacture;
-    Fournisseur fournisseur;
-    Set<Reglement> reglements;
+@Getter
+@Setter
+public class FactureDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @JsonIgnore
+    private Long idFacture;
+    @JsonIgnore
+    private float montantRemise;
+    private float montantFacture;
+    private Date dateCreationFacture;
+    private Date dateDerniereModificationFacture;
+    private Boolean archivee;
+    @JsonIgnore
+    private Set<DetailFacture> detailsFacture;
+    @JsonIgnore
+    private Set<Reglement> reglements;
 }
