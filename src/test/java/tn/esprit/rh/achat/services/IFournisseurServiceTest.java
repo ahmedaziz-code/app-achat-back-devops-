@@ -42,8 +42,9 @@ class IFournisseurServiceTest {
     @Test
     @Order(5)
     void deleteFournisseur() {
-        fournisseurService.deleteFournisseur(1L);
-        assertNull(fournisseurService.retrieveFournisseur(1L));
+        Fournisseur f = fournisseurService.addFournisseur(new Fournisseur());
+        fournisseurService.deleteFournisseur(f.getIdFournisseur());
+        assertNull(fournisseurService.retrieveFournisseur(f.getIdFournisseur()));
     }
 
     @Test
@@ -55,8 +56,10 @@ class IFournisseurServiceTest {
     @Test
     @Order(3)
     void retrieveFournisseur() {
-        Fournisseur fournisseurRetrieved = fournisseurService.retrieveFournisseur(1L);
-        assertEquals(1L, fournisseurRetrieved.getIdFournisseur());
+        Fournisseur f = fournisseurService.addFournisseur(new Fournisseur());
+        Fournisseur fournisseurRetrieved = fournisseurService.retrieveFournisseur(f.getIdFournisseur());
+        assertNotNull(fournisseurRetrieved);
+        fournisseurService.deleteFournisseur(f.getIdFournisseur());
     }
 
 //    @Test
