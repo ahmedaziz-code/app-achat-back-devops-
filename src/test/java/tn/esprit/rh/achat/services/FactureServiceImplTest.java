@@ -77,14 +77,26 @@ class FactureServiceImplTest {
         factureServiceImp.cancelFacture(1L);
         Mockito.verify(factureRepository, Mockito.times(1)).updateFacture(1L);
     }
+
+//    @Test
+//    @Order(6)
+//    void assign(){
+//        FactureServiceImpl fMock = Mockito.mock(FactureServiceImpl.class);
+//        Mockito.doCallRealMethod().when(fMock).assignOperateurToFacture(Mockito.anyLong(), Mockito.anyLong());
+//        factureService.assignOperateurToFacture(1L,1L);
+//        Mockito.verify(fMock, Mockito.times(1)).assignOperateurToFacture(1L,1L);
+//    }
     @Test
     @Order(5)
     void assignOperateurToFacture() {
+        Facture f = new Facture((float) 7.4, (float) 99.2,new Date(),new Date(),false);
         Operateur o = new Operateur("elj", "aziz", "123");
+        Facture factureAdded = factureService.addFacture(f);
         Operateur operateurAdded = iOperateurService.addOperateur(o);
-        factureService.assignOperateurToFacture(operateurAdded.getIdOperateur(),1L);
+        factureService.assignOperateurToFacture(operateurAdded.getIdOperateur(),factureAdded.getIdFacture());
         assertNotNull(iOperateurService.retrieveOperateur(operateurAdded.getIdOperateur()).getFactures());
         iOperateurService.deleteOperateur(operateurAdded.getIdOperateur());
+        factureRepository.delete(factureAdded);
     }
 
 
