@@ -73,13 +73,13 @@ class FactureServiceImplTest {
         iOperateurService.deleteOperateur(operateurAdded.getIdOperateur());
     }
 
-    @Test
-    @Order(6)
-    void pourcentageRecouvrement() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date1 = dateFormat.parse("2022-10-25",new ParsePosition(0));
-        Date date2 = dateFormat.parse("2022-10-26",new ParsePosition(0));
-        float p = factureService.pourcentageRecouvrement(date1,date2);
-        assertTrue(p>=0);
-    }
+//    @Test
+//    @Order(6)
+//    void pourcentageRecouvrement() {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date1 = dateFormat.parse("2022-10-25",new ParsePosition(0));
+//        Date date2 = dateFormat.parse("2022-10-26",new ParsePosition(0));
+//        float p = factureService.pourcentageRecouvrement(date1,date2);
+//        assertTrue(p>=0);
+//    }
 }

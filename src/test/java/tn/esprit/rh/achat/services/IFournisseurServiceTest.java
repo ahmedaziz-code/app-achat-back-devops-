@@ -59,13 +59,13 @@ class IFournisseurServiceTest {
         assertEquals(1L, fournisseurRetrieved.getIdFournisseur());
     }
 
-    @Test
-    @Order(4)
-    void assignSecteurActiviteToFournisseur() {
-        SecteurActivite sa = new SecteurActivite("aa","bb");
-        SecteurActivite saAdded = iSecteurActiviteService.addSecteurActivite(sa);
-        fournisseurService.assignSecteurActiviteToFournisseur(saAdded.getIdSecteurActivite(),1L);
-        assertNotNull(fournisseurService.retrieveFournisseur(1L).getSecteurActivites());
-        iSecteurActiviteService.deleteSecteurActivite(saAdded.getIdSecteurActivite());
-    }
+//    @Test
+//    @Order(4)
+//    void assignSecteurActiviteToFournisseur() {
+//        SecteurActivite sa = new SecteurActivite("aa","bb");
+//        SecteurActivite saAdded = iSecteurActiviteService.addSecteurActivite(sa);
+//        fournisseurService.assignSecteurActiviteToFournisseur(saAdded.getIdSecteurActivite(),1L);
+//        assertNotNull(fournisseurService.retrieveFournisseur(1L).getSecteurActivites());
+//        iSecteurActiviteService.deleteSecteurActivite(saAdded.getIdSecteurActivite());
+//    }
 }
