@@ -43,7 +43,7 @@ class FactureServiceImplTest {
     }
 
     @Test
-    @Order(7)
+    @Order(6)
     void cancelFacture() {
         factureService.cancelFacture(1L);
         assertEquals(true, factureService.retrieveFacture(1L).getArchivee());
@@ -69,7 +69,7 @@ class FactureServiceImplTest {
         Operateur o = new Operateur("elj", "aziz", "123");
         Operateur operateurAdded = iOperateurService.addOperateur(o);
         factureService.assignOperateurToFacture(operateurAdded.getIdOperateur(),1L);
-        assertNotNull(iOperateurService.retrieveOperateur(1L).getFactures());
+        assertNotNull(iOperateurService.retrieveOperateur(operateurAdded.getIdOperateur()).getFactures());
         iOperateurService.deleteOperateur(operateurAdded.getIdOperateur());
     }
 
