@@ -11,6 +11,9 @@ pipeline {
         NEXUS_URL = "0.0.0.0:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
+        registry = "ahmedazizelj/achat_back"
+        registryCredential = 'ahmedazizelj'
+        dockerImage = ''
     }
 
     stages {
@@ -86,5 +89,19 @@ pipeline {
                 }
             }
         }
+        stage ('Build our image'){
+            steps{
+                sh 'sudo docker build -t ahmedazizelj/achat_back .'
+            }
+        }
+        stage ('Deploy our image'){
+            steps{
+                sh '''
+                sudo docker login -u ahmedazizelj -p azizaziz1
+                sudo docker push ahmedazizelj/achat_back
+                '''
+                }
+            }
+
     }
 }
