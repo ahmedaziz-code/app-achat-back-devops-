@@ -51,7 +51,7 @@ class IFournisseurServiceTest {
     void retrieveAllFournisseurs() {
         Mockito.when(fournisseurRepository.findAll()).thenReturn(fournisseurList);
         List<Fournisseur> lf = fournisseurServiceImp.retrieveAllFournisseurs();
-        assertTrue(lf.size()==2);
+        assertEquals(2, lf.size());
     }
     @Test
     @Order(3)
