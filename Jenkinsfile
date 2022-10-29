@@ -91,15 +91,13 @@ pipeline {
         }
         stage ('Build our image'){
             steps{
-                sh 'sudo docker build -t ahmedazizelj/achat_back .'
+                sh 'sudo docker build --build-arg IP=0.0.0.0 -t ahmedazizelj/achat_back .'
             }
         }
         stage ('Deploy our image'){
             steps{
-                sh '''
-                sudo docker login -u ahmedazizelj -p azizaziz1
-                sudo docker push ahmedazizelj/achat_back
-                '''
+                sh 'sudo docker login -u ahmedazizelj -p azizaziz1';
+                sh 'sudo docker push ahmedazizelj/achat_back'
                 }
             }
 
