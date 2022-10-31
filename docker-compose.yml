@@ -5,30 +5,31 @@ services:
     image: mysql:latest
     restart: unless-stopped
     environment:
-        - MYSQL_ROOT_PASSWORD=root
-        - MYSQL_DATABASE=achatdb
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=achatdb
     ports:
-        - 3306:3306
+      - 3306:3306
     networks:
-        - springmysql-net
-  app_chat:
+      - springmysql-net
+  app_achat_back:
     image : ahmedazizelj/achat_back
     depends_on:
       - mysqldb
     restart: on-failure
     ports:
-       - 8089:8089
-    environment:
-        SPRING_APPLICATION_JSON: '{
-            "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-            "spring.datasource.username" : "root",
-            "spring.datasource.password" : "root",
-            "spring.jpa.show-sql"= "true",
-            "spring.jpa.hibernate.ddl-auto"= "update",
-            "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQL5InnoDBDialect"
-          }'
+      - 8089:8089
     networks:
       - springmysql-net
-
+      - frontend
+  app_achat_front :
+    image : ahmedazizelj/achat_front
+    ports:
+      - 4200:80
+    links :
+      - app_achat_back
+    restart : on-failure
+    networks :
+      - frontend
 networks:
   springmysql-net:
+  frontend:
