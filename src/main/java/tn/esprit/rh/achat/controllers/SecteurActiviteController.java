@@ -56,7 +56,7 @@ public class SecteurActiviteController {
 	public SecteurActivite modifySecteurActivite(@RequestBody SecteurActiviteDTO secteurActivite) {
 		SecteurActivite secteurActivite1 = new SecteurActivite();
 		BeanUtils.copyProperties(secteurActivite, secteurActivite1);
-		return secteurActiviteService.updateSecteurActivite(secteurActivite1);
+		return secteurActiviteService.addSecteurActivite(secteurActivite1);
 	}
 
 	
