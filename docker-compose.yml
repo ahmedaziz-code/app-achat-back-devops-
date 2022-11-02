@@ -1,5 +1,4 @@
-version: '3'
-
+version : '3'
 services:
   mysqldb:
     image: mysql:latest
@@ -10,7 +9,9 @@ services:
     ports:
       - 3306:3306
     networks:
-      - springmysql-net
+      - backend-net
+
+
   app_achat_back:
     image : ahmedazizelj/achat_back
     depends_on:
@@ -18,18 +19,29 @@ services:
     restart: on-failure
     ports:
       - 8089:8089
+    environment:
+      SPRING_APPLICATION_JSON: '{
+            "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+            "spring.datasource.username" : "root",
+            "spring.datasource.password" : "root",
+            "spring.jpa.show-sql" : "true",
+            "spring.jpa.hibernate.ddl-auto" : "update",
+            "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQL5InnoDBDialect"
+          }'
     networks:
-      - springmysql-net
-      - frontend
+      - backend-net
+      - frontend-net
+
+
   app_achat_front :
     image : ahmedazizelj/achat_front
     ports:
       - 4200:80
-    links :
+    depends_on :
       - app_achat_back
     restart : on-failure
     networks :
-      - frontend
+      - frontend-net
 networks:
-  springmysql-net:
-  frontend:
+  backend-net:
+  frontend-net
