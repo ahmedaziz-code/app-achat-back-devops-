@@ -41,6 +41,7 @@ class FactureServiceImplTest {
     FactureServiceImpl factureServiceImp;
 
     Facture facture = new Facture((float) 7.4, (float) 99.2,new Date(),new Date(),false);
+    
     List<Facture> listFacture = new ArrayList<Facture>(){
         {
             add(new Facture((float) 6.4, (float) 99.2,new Date(),new Date(),true));
