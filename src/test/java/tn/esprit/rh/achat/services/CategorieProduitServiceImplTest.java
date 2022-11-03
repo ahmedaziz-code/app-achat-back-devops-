@@ -1,0 +1,85 @@
+package tn.esprit.rh.achat.services;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
+import java.util.List;
+import java.util.Optional;
+
+
+
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+
+import tn.esprit.rh.achat.entities.CategorieProduit;
+
+import tn.esprit.rh.achat.repositories.CategorieProduitRepository;
+
+
+class CategorieProduitServiceImplTest {
+	
+	
+	 @Autowired
+	    ICategorieProduitService categoryProduitService;
+	    @Autowired
+	    IOperateurService iOperateurService;
+	    @Mock
+	    CategorieProduitRepository categoryProduitRepository;
+	    @InjectMocks
+	    CategorieProduitServiceImpl catgoryProduitServiceImp;
+
+	    CategorieProduit categorieproduit = new CategorieProduit( " 12345", "ahmed");
+	    List<CategorieProduit> listCategorieProduit = new ArrayList<CategorieProduit>(){
+	        {
+	            add(new CategorieProduit("123456", "ahmed1"));
+	            add(new CategorieProduit("1234567", "ahmed2"));
+	        }
+	    };
+	    
+	@Test
+	@Order(2)
+	void testRetrieveAllCategorieProduits() {
+		Mockito.when(categoryProduitRepository.findAll()).thenReturn(listCategorieProduit);
+        List<CategorieProduit> listCategorieProduit1 = catgoryProduitServiceImp.retrieveAllCategorieProduits();
+        assertTrue(listCategorieProduit1.size()>=0);
+	}
+
+	 @Test
+	 @Order(1)
+	void testAddCategorieProduit() {
+		 Mockito.when(categoryProduitRepository.save(categorieproduit)).thenReturn(categorieproduit);
+	        CategorieProduit cateegoryproduit1 = catgoryProduitServiceImp.addCategorieProduit(categorieproduit);
+	        assertNotNull(cateegoryproduit1);
+	}
+
+	@Test
+	 @Order(4)
+	void testDeleteCategorieProduit() {
+		 Mockito.doNothing().when(categoryProduitRepository).deleteById(Mockito.anyLong());
+		 catgoryProduitServiceImp.deleteCategorieProduit(3L);
+	        Mockito.verify(categoryProduitRepository, Mockito.times(1)).deleteById(3L);
+	}
+
+	@Test
+	 @Order(3)
+	void testUpdateCategorieProduit() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	@Order(3)
+	void testRetrieveCategorieProduit() {
+		 Mockito.when(categoryProduitRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(categorieproduit));
+	        CategorieProduit categorieProduit1 = catgoryProduitServiceImp.retrieveCategorieProduit(2L);
+	        assertNotNull(categorieProduit1);
+	}
+
+}
