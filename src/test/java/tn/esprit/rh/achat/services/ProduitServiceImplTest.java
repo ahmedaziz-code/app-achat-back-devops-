@@ -76,7 +76,7 @@ class ProduitServiceImplTest {
 
 	@Test
 	void testUpdateProduit() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test

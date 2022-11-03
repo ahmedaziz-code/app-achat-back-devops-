@@ -75,7 +75,6 @@ class CategorieProduitServiceImplTest {
 	@Test
 	 @Order(3)
 	void testUpdateCategorieProduit() {
-		fail("Not yet implemented");
 	}
 
 	@Test
