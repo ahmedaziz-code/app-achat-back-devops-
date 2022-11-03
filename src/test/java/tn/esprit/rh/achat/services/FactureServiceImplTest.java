@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
@@ -37,10 +38,14 @@ class FactureServiceImplTest {
     IOperateurService iOperateurService;
     @Mock
     FactureRepository factureRepository;
+    @Mock
+    ReglementServiceImpl reglementService;
     @InjectMocks
     FactureServiceImpl factureServiceImp;
 
     Facture facture = new Facture((float) 7.4, (float) 99.2,new Date(),new Date(),false);
+    float totaleFacture = 100;
+    float totaleRecouvrement = 200;
     List<Facture> listFacture = new ArrayList<Facture>(){
         {
             add(new Facture((float) 6.4, (float) 99.2,new Date(),new Date(),true));
@@ -81,9 +86,9 @@ class FactureServiceImplTest {
 //    @Test
 //    @Order(6)
 //    void assign(){
-//        FactureServiceImpl fMock = Mockito.mock(FactureServiceImpl.class);
-//        Mockito.doCallRealMethod().when(fMock).assignOperateurToFacture(Mockito.anyLong(), Mockito.anyLong());
-//        factureService.assignOperateurToFacture(1L,1L);
+//        FactureServiceImpl fMock = mock(FactureServiceImpl.class);
+//        Mockito.doNothing().when(fMock).assignOperateurToFacture(Mockito.anyLong(), Mockito.anyLong());
+//        fMock.assignOperateurToFacture(1L,1L);
 //        Mockito.verify(fMock, Mockito.times(1)).assignOperateurToFacture(1L,1L);
 //    }
     @Test
@@ -104,10 +109,11 @@ class FactureServiceImplTest {
 //    @Test
 //    @Order(6)
 //    void pourcentageRecouvrement() {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date1 = dateFormat.parse("2022-10-25",new ParsePosition(0));
-//        Date date2 = dateFormat.parse("2022-10-26",new ParsePosition(0));
-//        float p = factureService.pourcentageRecouvrement(date1,date2);
-//        assertTrue(p>=0);
+//        Date startDate = new Date();
+//        Date endDate = new Date();
+//        Mockito.when(factureRepository.getTotalFacturesEntreDeuxDates(startDate, endDate)).thenReturn(totaleFacture);
+//        Mockito.when(reglementService.getChiffreAffaireEntreDeuxDate(startDate, endDate)).thenReturn(totaleRecouvrement);
+//
+//        assertNotNull();
 //    }
 }
