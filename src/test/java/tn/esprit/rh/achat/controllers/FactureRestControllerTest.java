@@ -40,32 +40,17 @@ class FactureRestControllerTest {
     @Test
     @Order(1)
     void getFactures() {
-        Mockito.when(factureService.retrieveFacture(Mockito.anyLong())).thenReturn(facture);
-        Facture savedFacture = factureRestController.retrieveFacture(2L);
-        assertNotNull(savedFacture);
+        Mockito.when(factureService.retrieveAllFactures()).thenReturn(listFacture);
+        List<Facture> list = factureRestController.getFactures();
+        assertNotNull(list);
     }
 
     @Test
     void retrieveFacture() {
+        Mockito.when(factureService.retrieveFacture(Mockito.anyLong())).thenReturn(facture);
+        Facture restreivedFacture = factureRestController.retrieveFacture(2L);
+        assertNotNull(restreivedFacture);
     }
 
-    @Test
-    void addFacture() {
-    }
 
-    @Test
-    void cancelFacture() {
-    }
-
-    @Test
-    void getFactureByFournisseur() {
-    }
-
-    @Test
-    void assignOperateurToFacture() {
-    }
-
-    @Test
-    void pourcentageRecouvrement() {
-    }
 }
