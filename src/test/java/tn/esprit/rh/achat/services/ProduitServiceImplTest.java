@@ -39,8 +39,6 @@ class ProduitServiceImplTest {
 	    ProduitServiceImpl produitServiceImp;
 	    @InjectMocks
 	    StockServiceImpl stockServiceImp;
-	    
-	    
 	    Produit produit = new Produit( " 12345", "ahmed",(float)7.4,new Date(),new Date());
 	    List<Produit> listProduit = new ArrayList<Produit>(){
 	        {
@@ -76,7 +74,7 @@ class ProduitServiceImplTest {
 
 	@Test
 	void testRetrieveProduit() {
-		 Mockito.when(produitRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(categorieproduit));
+		 Mockito.when(produitRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(produit));
 	        Produit produit1 = produitServiceImp.retrieveProduit(2L);
 	        assertNotNull(produit1);
 	}
