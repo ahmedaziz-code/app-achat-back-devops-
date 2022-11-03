@@ -7,12 +7,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.rh.achat.entities.CategorieProduit;
 import tn.esprit.rh.achat.entities.Facture;
 import tn.esprit.rh.achat.entities.Operateur;
@@ -22,7 +27,9 @@ import tn.esprit.rh.achat.repositories.ProduitRepository;
 import tn.esprit.rh.achat.repositories.StockRepository;
 
 
-
+@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProduitServiceImplTest {
 
 	
