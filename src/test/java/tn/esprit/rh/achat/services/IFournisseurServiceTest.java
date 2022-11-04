@@ -71,6 +71,7 @@ class IFournisseurServiceTest {
         fournisseurServiceImp.deleteFournisseur(3L);
         Mockito.verify(fournisseurRepository, Mockito.times(1)).deleteById(3L);
     }
+    /*
     @Test
     @Order(4)
     void updateFournisseur() {
@@ -81,7 +82,7 @@ class IFournisseurServiceTest {
         });
         Fournisseur f = fournisseurServiceImp.updateFournisseur(fournisseur);
         assertNotNull(f.getDetailFournisseur());
-    }
+    }*/
 
 
     @Test
