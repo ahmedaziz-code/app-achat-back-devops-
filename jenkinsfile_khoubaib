@@ -38,10 +38,11 @@ pipeline{
                  	}
                	 }
               }
-		stage("Maven Build"){
-            steps{
-                sh 'sudo docker build --build-arg IP=0.0.0.0 -t ahmedazizelj/achat_back .'
+		stage("Maven Build") {
+            steps {
+                script {
+                    sh "mvn package -DskipTests=true"
+                }
             }
         }
-}
-}
+        }
