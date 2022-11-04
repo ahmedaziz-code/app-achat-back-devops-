@@ -41,7 +41,7 @@ pipeline{
 		stage("Maven Build") {
             steps {
                 script {
-                    sh "mvn package -DskipTests=true"
+                    sh 'sudo docker build --build-arg IP=0.0.0.0 -t ahmedazizelj/achat_back .'
                 }
             }
         }
