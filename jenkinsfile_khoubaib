@@ -27,10 +27,11 @@ stages{
                  }
 		         }
                             }
-       stage ('SonarQube analysis') {
+        stage ('SonarQube analysis') {
             steps{
-                sh 'mvn 
-		-D maven.test.skip=true clean package sonar:sonar'
+                sh '''
+                mvn sonar:sonar
+                '''
             }
         }
                                        
