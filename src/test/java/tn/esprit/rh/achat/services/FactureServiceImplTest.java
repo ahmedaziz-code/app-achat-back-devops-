@@ -59,7 +59,7 @@ class FactureServiceImplTest {
         Facture facture1 = factureServiceImp.addFacture(facture);
         assertNotNull(facture1);
     }
-    //testing triggers
+    //testing triggers comeon
     @Test
     @Order(2)
     void retrieveAllFactures(){
