@@ -30,7 +30,7 @@ stages{
        stage ('SonarQube analysis') {
             steps{
 	    sh"
-	    - mvn verify sonar:sonar \
+	     mvn -Dmaven.test.skip=true clean package sonar:sonar \
 	    -Dsonar.host.url=http://http://192.168.33.10:9000/ \
 	    -Dsonar.login=4465162476cbdfaa04558d7c71d68f8f6834ebfe\
 	    -Dsonar.login=admin \
