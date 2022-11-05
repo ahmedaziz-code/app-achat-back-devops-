@@ -28,9 +28,9 @@ stages{
 		         }
                             }
         stage( ' Analyse SonarQube ' ) {
-            def scannerHome = outil ' sonarqube ' ;
+          
             withSonarQubeEnv( ' sonarqube ' ) {
-      sh " ${ scannerHome } /bin/sonar-scanner \
+      sh " ${ mvn sonar:sonar } /bin/sonar-scanner \
       -D sonar.login=admin \
       -D sonar.password=admin \
       -D sonar.host.url=http://192.168.33.10:9000/ "
