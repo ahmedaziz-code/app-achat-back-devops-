@@ -27,15 +27,19 @@ stages{
                  }
 		         }
                             }
-		
-	stage("build & SonarQube analysis") {
-          steps {
-              withSonarQubeEnv('My SonarQube Server') {
-                 sh 'mvn clean package sonar:sonar'
-              }
-          }
-      }
-                                     }   
+	stage ( 'Analyse SonarQube' ) { 	
+	    steps{
+                withSonarQubeEnv ( 'SonarQube' ) { 
+                    sh "./gradlew sonarqube"
+                }
+            }
+        }
+        stage( "Porte de la qualité" ) { 
+            steps{
+                waitForQualityGate abortPipeline : vrai
+            }
+        }
+                                       
 	   stage("Maven Build") {
                 steps {
                     script {
