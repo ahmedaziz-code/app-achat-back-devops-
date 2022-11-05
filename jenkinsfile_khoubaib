@@ -34,11 +34,7 @@ stages{
                 }
             }
         }
-        stage( "Porte de la qualité" ) { 
-            steps{
-                waitForQualityGate abortPipeline : vrai
-            }
-        }
+
                                        
 	   stage("Maven Build") {
                 steps {
