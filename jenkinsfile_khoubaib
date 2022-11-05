@@ -27,15 +27,27 @@ stages{
                  }
 		         }
                             }
-        stage( ' Analyse SonarQube ' ) {
-          
-            withSonarQubeEnv( ' sonarqube ' ) {
-      sh " ${ mvn sonar:sonar } /bin/sonar-scanner \
-      -D sonar.login=admin \
-      -D sonar.password=admin \
-      -D sonar.host.url=http://192.168.33.10:9000/ "
-    }
-  }
+                stage("sonarqube analysis")
+        {
+             
+           steps{
+             script{
+                withSonarQubeEnv(credentialsId: 'jenkins')
+                {
+                    sh 'mvn -Dmaven.test.skip=true clean package sonar:sonar'
+                }
+             }
+           }
+        }
+
+        stage("Quality status")
+        { 
+           steps{
+             script{
+                waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-auth'
+             }
+           }
+        }
                                        
 	   stage("Maven Build") {
                 steps {
