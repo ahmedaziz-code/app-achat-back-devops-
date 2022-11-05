@@ -31,24 +31,16 @@ pipeline{
 		
 	stage("sonarqube analysis") {       
              steps {
-	            script {
-                        withSonarQubeEnv(credentialsId: 'jenkins-auth')
-                        sh 'mvn -Dmaven.test.skip=true clean package sonar:sonar'    
+                       def scannerHome = tool 'sonarqube';
+                       withSonarQubeEnv('sonarqube'){
+                           sh "${scannerHome}/bin/sonar-scanner \
+                           -D sonar.login=admin \
+                           -D sonar.password=admin \
+                           -D sonar.host.url=http://http://192.168.33.10:9000/"  
                   }
-		           }
+		           
                                      }
-			   
-			   
-         stage('Testing process') {
-             steps {
-                  script {
-                       sh 'echo "Test is processing ...."'
-                       sh 'mvn clean test'
-                          }
-                    }
-                                  }
-
-                                        
+		                      
               
 	   stage("Maven Build") {
                 steps {
