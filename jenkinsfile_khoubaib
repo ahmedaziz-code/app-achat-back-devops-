@@ -27,13 +27,6 @@ stages{
                  }
 		         }
                             }
-	stage ( 'Analyse SonarQube' ) { 	
-	    steps{
-                withSonarQubeEnv ( 'SonarQube' ) { 
-                    sh "./gradlew sonarqube"
-                }
-            }
-        }
 
                                        
 	   stage("Maven Build") {
