@@ -25,16 +25,14 @@ pipeline{
                             }
 	
 		
-	stage("sonarqube analysis")        
+	stage("sonarqube analysis") {       
              steps{
-                  script{
                         withSonarQubeEnv(credentialsId: 'jenkins-auth')
-                          {
-                        sh 'mvn -Dmaven.test.skip=true clean package sonar:sonar'
-                          }
-                        }
+                        sh 'mvn -Dmaven.test.skip=true clean package sonar:sonar'    
                   }
-                                         }
+                                  }
+			   
+			   
          stage('Testing process') {
              steps {
                   script {
@@ -44,7 +42,7 @@ pipeline{
                     }
                                   }
 
-                                        }
+                                        
               
 	   stage("Maven Build") {
                 steps {
