@@ -12,24 +12,31 @@ pipeline{
 	 
         stage('Getting project from Github') {
             steps {
-                git branch : 'stock' ,
-                    url : 'https://github.com/ahmedaziz-code/app-achat.git';
+	         script {
+                       git branch : 'stock' ,
+                       url : 'https://github.com/ahmedaziz-code/app-achat.git';
                   }
+			 }
+			                     }
                                               }
 	
 	
 	stage ('Unit Test') {
             steps{
-                sh 'mvn  test'
+	          script {
+                        sh 'mvn  test'
                  }
+		         }
                             }
 	
 		
 	stage("sonarqube analysis") {       
-             steps{
+             steps {
+	            script {
                         withSonarQubeEnv(credentialsId: 'jenkins-auth')
                         sh 'mvn -Dmaven.test.skip=true clean package sonar:sonar'    
                   }
+		           }
                                   }
 			   
 			   
