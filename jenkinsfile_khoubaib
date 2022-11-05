@@ -28,14 +28,13 @@ stages{
 		         }
                             }
 		
-	stage("sonarqube analysis"){    
-           steps{
-             script{
-
-                    sh 'mvn -Dmaven.test.skip=true clean package sonar:sonar'
-                
-                    }
-                 }
+	stage("build & SonarQube analysis") {
+          steps {
+              withSonarQubeEnv('My SonarQube Server') {
+                 sh 'mvn clean package sonar:sonar'
+              }
+          }
+      }
                                      }   
 	   stage("Maven Build") {
                 steps {
