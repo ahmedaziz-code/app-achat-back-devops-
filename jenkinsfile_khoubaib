@@ -29,13 +29,7 @@ stages{
                             }
        stage ('SonarQube analysis') {
             steps{
-	    sh 'mvn 
-	    -D maven.test.skip=true clean package sonar:sonar\
-	    -D sonar.host.url=http://http://192.168.33.10:9000/ \
-	    -D sonar.login=4465162476cbdfaa04558d7c71d68f8f6834ebfe\
-	    -D sonar.login=admin \
-	    -D sonar.password=admin'
-
+                sh 'mvn -Dmaven.test.skip=true clean package sonar:sonar'
             }
         }
                                        
