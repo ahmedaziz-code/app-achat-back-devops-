@@ -18,7 +18,6 @@ pipeline{
                   }
 			 }
 			                     }
-        
 	
 	stage ('Unit Test') {
             steps{
@@ -27,7 +26,6 @@ pipeline{
                  }
 		         }
                             }
-	
 		
 	stage("sonarqube analysis") {       
              steps {
