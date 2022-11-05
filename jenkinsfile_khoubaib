@@ -29,7 +29,8 @@ stages{
                             }
 		
 	stage("sonarqube analysis") {       
- 
+             steps {
+	         script {
                        def scannerHome = tool 'sonarqube';
                        withSonarQubeEnv('sonarqube'){
                            sh "${scannerHome}/bin/sonar-scanner \
@@ -39,7 +40,8 @@ stages{
                  
 		           }
                                      }
-		                                 
+		                        }
+					}         
 	   stage("Maven Build") {
                 steps {
                     script {
