@@ -29,7 +29,8 @@ stages{
                             }
        stage ('SonarQube analysis') {
             steps{
-                sh 'mvn -Dmaven.test.skip=true clean package sonar:sonar'
+                sh 'mvn 
+		-D maven.test.skip=true clean package sonar:sonar'
             }
         }
                                        
