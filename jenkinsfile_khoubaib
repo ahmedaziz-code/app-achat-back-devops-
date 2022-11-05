@@ -12,7 +12,7 @@ pipeline{
 	 
         stage('Getting project from Github') {
             steps {
-                git branch : 'fournisseur' ,
+                git branch : 'stock' ,
                     url : 'https://github.com/ahmedaziz-code/app-achat.git';
                   }
                                               }
