@@ -31,10 +31,9 @@ stages{
 	stage("sonarqube analysis"){    
            steps{
              script{
-                   withSonarQubeEnv(credentialsId: 'jenkins')
-                   {
+
                     sh 'mvn -Dmaven.test.skip=true clean package sonar:sonar'
-                }
+                
                     }
                  }
                                      }   
