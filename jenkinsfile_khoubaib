@@ -1,13 +1,14 @@
 pipeline{
 
       agent any
+       
         tools {
-     jdk 'JAVA_HOME'
-     maven 'M2_HOME'
+               jdk 'JAVA_HOME'
+               maven 'M2_HOME'
                }
 
         
-        stages{
+stages{
 	
 	 
         stage('Getting project from Github') {
@@ -38,8 +39,7 @@ pipeline{
                   }
 		           
                                      }
-		                      
-              
+		                                 
 	   stage("Maven Build") {
                 steps {
                     script {
