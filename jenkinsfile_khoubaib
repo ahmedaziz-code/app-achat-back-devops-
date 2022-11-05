@@ -27,14 +27,16 @@ stages{
                  }
 		         }
                             }
-        stage ('SonarQube analysis') {
-            steps{
-                sh '''
-                mvn sonar:sonar
-		sonar.login=admin \ sonar.password=admin.
-                '''
-            }
-        }
+        stage( ' Analyse SonarQube ' ) {
+    def scannerHome = outil ' sonarqube ' ;
+    withSonarQubeEnv( ' sonarqube ' ) {
+      sh " ${ scannerHome } /bin/sonar-scanner \
+      -D sonar.login=admin \
+      -D sonar.password=admin \
+      -D sonar.exclusions=fournisseur/**,ressources/**,**/*.java \
+      -D sonar.host.url=http://192.168.33.10:9000/ "
+    }
+  }
                                        
 	   stage("Maven Build") {
                 steps {
