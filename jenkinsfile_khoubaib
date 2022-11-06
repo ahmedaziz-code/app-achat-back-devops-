@@ -16,9 +16,10 @@ stages{
 	         script {
                        git branch : 'stock' ,
                        url : 'https://github.com/ahmedaziz-code/app-achat.git';
-                  }
-			 }
-			                     }
+                        }
+		  }
+                                              }
+
 	
 	stage ('Unit Test') {
             steps{
@@ -27,10 +28,8 @@ stages{
                  }
 		         }
                             }
-                stage("sonarqube analysis")
-        {
-             
-        stage('Quality Gate Status Check'){
+			    
+                stage('Quality Gate Status Check'){
                   steps{
                       script{
 			      withSonarQubeEnv('sonar') {
