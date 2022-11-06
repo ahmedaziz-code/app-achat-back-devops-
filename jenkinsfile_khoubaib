@@ -26,6 +26,7 @@ stages{
                        url : 'https://github.com/ahmedaziz-code/app-achat.git';
                         }
 		  }
+		  }
         stage('Unit test'){
             steps{
                 echo " testing the app .."
