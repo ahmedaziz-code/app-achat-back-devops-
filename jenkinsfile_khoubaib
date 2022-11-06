@@ -27,6 +27,30 @@ stages{
                         }
 		  }
 		  }
+		  
+	stage('cleanig the project') {
+            steps{
+                sh 'mvn clean'
+            }
+        }
+	
+        stage ('artifact construction') {
+            steps{
+                sh 'mvn  package'
+            }
+        }
+	
+	stage('Quality Gate Status Check'){
+                  steps{
+                      script{
+			      withSonarQubeEnv('sonar') {
+			      sh "mvn compile sonar:sonar"
+                       	     	}			     
+		    	       sh "mvn clean install"
+                 	}
+               	 }
+              }  
+      
        stage ('Unit Test') {
             steps{
                script {
@@ -34,7 +58,6 @@ stages{
 		       }
             }
         }
-			    
-         
+			           
         }
 }
