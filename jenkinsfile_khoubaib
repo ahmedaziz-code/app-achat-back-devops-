@@ -61,13 +61,13 @@ stages{
 	}
 	 post {
                 success {
-                     mail to: "khoubaib.laouini@esprit.tn",
+                     mail to: "laouinikhoubaib@gmail.com",
                             subject: "Build sucess",
                             body: "sucess"
                             echo 'successful'
                         }
                 failure {
-                     mail to: "khoubaib.laouini@esprit.tn",
+                     mail to: "laouinikhoubaib@gmail.com",
                             subject: "Build failed",
                             body: "failed"
                     echo 'failed'
