@@ -30,7 +30,7 @@ stages{
                 stage("sonarqube analysis")
         {
              
-        tage('Quality Gate Status Check'){
+        stage('Quality Gate Status Check'){
                   steps{
                       script{
 			      withSonarQubeEnv('sonar') {
