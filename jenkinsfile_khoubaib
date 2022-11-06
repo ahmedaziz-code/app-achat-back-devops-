@@ -27,13 +27,13 @@ stages{
                         }
 		  }
 		  }
-        stage('Unit test'){
+       stage ('Unit Test') {
             steps{
-                echo " testing the app .."
-                sh "mvn test"
+               script {
+	               sh 'mvn  test'
+		       }
             }
-        }                                      }
-
+        }
 			    
          
         }
