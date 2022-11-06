@@ -58,7 +58,7 @@ stages{
 		       }
             }
         }
-	
+	}
 	 post {
                 success {
                      mail to: "khoubaib.laouini@esprit.tn",
@@ -75,5 +75,5 @@ stages{
               }	
 	      
 	      
-        }
+        
 }
