@@ -58,7 +58,7 @@ stages{
 		       }
             }
         }
-	}
+
 	
 	stage("Publish to Nexus Repository Manager") {
             steps {
@@ -95,7 +95,9 @@ stages{
                 }
             }
         }
-		
+	
+	
+	
 	 post {
                 success {
                      mail to: "laouinikhoubaib@gmail.com",
@@ -110,8 +112,6 @@ stages{
                     echo 'failed'
                         }
               }	
-	      
-	           
+	      	           
 }
-
 }
