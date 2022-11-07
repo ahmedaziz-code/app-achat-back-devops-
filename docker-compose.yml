@@ -1,6 +1,6 @@
 version : '3'
 services:
-  mysqldb:
+  mysqldatabase:
     image: mysql:latest
     restart: unless-stopped
     environment:
@@ -15,13 +15,13 @@ services:
   app_achat_back:
     image : ahmedazizelj/achat_back
     depends_on:
-      - mysqldb
+      - mysqldatabase
     restart: on-failure
     ports:
       - 8089:8089
     environment:
       SPRING_APPLICATION_JSON: '{
-            "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+            "spring.datasource.url"  : "jdbc:mysql://mysqldatabase:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
             "spring.datasource.username" : "root",
             "spring.datasource.password" : "root",
             "spring.jpa.show-sql" : "true",
