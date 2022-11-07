@@ -74,6 +74,6 @@ class ReglementServiceImplTest {
         Date endDate = new Date();
         Mockito.when(reglementRepository.getChiffreAffaireEntreDeuxDate(new Date(),new Date())).thenReturn(chifreAffaire);
         float ch = reglementService.getChiffreAffaireEntreDeuxDate(startDate, endDate);
-        assertNotNull(ch);
+        assertTrue(ch>=0 || ch<=0);
     }
 }
