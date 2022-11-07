@@ -7,14 +7,6 @@ pipeline{
                maven 'M2_HOME'
                }
 	       
-        environment {
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.33.10:8081/"
-        NEXUS_REPOSITORY = "maven-nexus-repo"
-        NEXUS_CREDENTIAL_ID = "e005591e-3fae-45d5-b6ed-55801d2bbb59"
-
-    }
         
 stages{
 	
@@ -34,22 +26,6 @@ stages{
             }
         }
 	
-        stage ('artifact construction') {
-            steps{
-                sh 'mvn  package'
-            }
-        }
-	
-	stage('Quality Gate Status Check'){
-                  steps{
-                      script{
-			      withSonarQubeEnv('sonar') {
-			      sh "mvn compile sonar:sonar"
-                       	     	}			     
-		    	       sh "mvn clean install"
-                 	}
-               	 }
-              }  
       
        stage ('Unit Test') {
             steps{
@@ -60,44 +36,27 @@ stages{
         }
 
 	
-	stage("Publish to Nexus Repository Manager") {
-            steps {
-                script {
-                    pom = readMavenPom file: "pom.xml";
-                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
-                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
-                    artifactPath = filesByGlob[0].path;
-                    artifactExists = fileExists artifactPath;
-                    if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
-                        nexusArtifactUploader(
-                            nexusVersion: NEXUS_VERSION,
-                            protocol: NEXUS_PROTOCOL,
-                            nexusUrl: NEXUS_URL,
-                            groupId: pom.groupId,
-                            version: pom.version,
-                            repository: simpleass-realise,
-                            credentialsId: NEXUS_CREDENTIAL_ID,
-                            artifacts: [
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: artifactPath,
-                                type: pom.packaging],
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
-                            ]
-                        );
-                    } else {
-                        error "*** File: ${artifactPath}, could not be found";
+           stage("Publish to Nexus Repository Manager") {
+               steps {
+                    script {
+                        nexusArtifactUploader artifacts: [
+                        [
+                        artifactId: 'achat',
+                          classifier: '',
+                          file: 'target/achat-1.0.0.war',
+                          type: 'war']
+                          ],
+                          credentialsId: 'nexus3',
+                          groupId: 'tn.esprit.rh',
+                          nexusUrl: '192.168.33.10:8081',
+                          nexusVersion: 'nexus3',
+                          protocol: 'http',
+                          repository: 'http://192.168.33.10:8081/repository/simpleass-realise/',
+                          version: '1.0.0'
+
                     }
-                }
-            }
         }
-}	
-	
-	
+} 
 	 post {
                 success {
                      mail to: "laouinikhoubaib@gmail.com",
