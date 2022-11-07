@@ -36,7 +36,7 @@ services:
   app_achat_front :
     image : docker.io/ahmedazizelj/achat_front
     ports:
-      - 4200:4200
+      - 4200:80
     depends_on :
       - app_achat_back
     restart : on-failure
