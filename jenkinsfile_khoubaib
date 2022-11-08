@@ -33,7 +33,7 @@ stage("upload jar to nexus") {
                                           [[
                                           artifactId: 'achat',
                                           classifier: '',
-                                          file: 'target/springproject.jar',
+                                          file: 'target/achat.jar',
                                            type: 'jar']],
                                             credentialsId: 'nexus3',
                                              groupId: 'tn.esprit.rh',
