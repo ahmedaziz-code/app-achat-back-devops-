@@ -32,14 +32,14 @@ stages{
                                          nexusArtifactUploader artifacts: [
 					 [artifactId: 'achat',
 					 classifier: '',
-					 file: 'target/achat.jar',
+					file: 'my-service-' + 1.0 + '.jar',
 					 type: 'jar']],
 					 credentialsId: 'nexus3',
 					 groupId: 'tn.esprit.rh',
 					 nexusUrl: '192.168.33.10:8081',
 					 nexusVersion: 'nexus3',
 					 protocol: 'http',
-					 repository: 'simpleass-realise/',
+					 repository: 'simpleass-realise',
 					 version: '1.0'
                                            }
                                     }       
