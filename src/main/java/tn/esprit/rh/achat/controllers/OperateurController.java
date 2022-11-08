@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des opérateurs")
 @RequestMapping("/operateur")
-@CrossOrigin("80")
+@CrossOrigin("*")
 public class OperateurController {
 
 	@Autowired
