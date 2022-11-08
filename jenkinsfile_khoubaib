@@ -26,7 +26,11 @@ stages{
                 sh 'mvn clean'
             }
         }
-	
+	stage ('Unit Test') {
+            steps{
+                sh 'mvn  test'
+            }
+        }
 
 	  stage('Quality Gate Status Check'){
                   steps{
