@@ -36,18 +36,7 @@ stages{
             }
         }
 
-     stage('Quality Gate Status Check'){
-                  steps{
-                      script{
-			      withSonarQubeEnv('sonar') {
-			      sh "mvn compile sonar:sonar"
-                       	     	}
-			     
-		    	       sh "mvn clean install"
-
-                 	}
-               	 }
-              }  
+      
                                         
        stage("Publish to Nexus Repository Manager") {
             steps {
