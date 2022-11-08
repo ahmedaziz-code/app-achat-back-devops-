@@ -21,7 +21,7 @@ stages{
 		  }
 		  }
 		  
-	tage('Testing process') {
+	stage('Testing process') {
                               steps {
                                script {
                                 sh 'echo "Test is processing ...."'
