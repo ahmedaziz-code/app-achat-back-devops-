@@ -27,14 +27,7 @@ stages{
         }
 	
       
-       stage ('Unit Test') {
-            steps{
-               script {
-	               sh 'mvn  test'
-		       }
-            }
-        }
-
+       
 	
            stage("Publish to Nexus Repository Manager") {
                steps {
