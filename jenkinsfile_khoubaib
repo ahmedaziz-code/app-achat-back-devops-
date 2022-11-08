@@ -32,31 +32,29 @@ stages{
       		    steps {
         		sh 'mvn -B -DskipTests clean package'
       		          }
-            	}	  
+            	}	
+		
         stage ('Unit Test') {
                steps{
                    script {
                  sh 'mvn  test'
                 }
             }
-        }
+          }
 
 
-               stage('Quality Gate Status Check'){
+           stage('Quality Gate Status Check'){
                   steps{
                       script{
 			      withSonarQubeEnv('sonar') {
 			      sh "mvn compile sonar:sonar"
                        	     	}
-			      timeout(time: 1, unit: 'HOURS') {
-			      def qg = waitForQualityGate()
-				      
-                    		}
-		    	    sh "mvn clean install"
+			     
+		    	       sh "mvn clean install"
 
                  	}
                	 }
-              }                                             
+              }                                          
 
 }
 	 post {
