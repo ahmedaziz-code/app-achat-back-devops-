@@ -27,23 +27,26 @@ stages{
             }
         }
 	
-         stage("upload war to nexus") {
-	  steps {
-                                         nexusArtifactUploader artifacts: [
-					 [artifactId: 'achat',
-					 classifier: '',
-					 file: 'achat-' + 1.0 + '.jar',
-					 type: 'jar']],
-					 credentialsId: 'nexus3',
-					 groupId: 'tn.esprit.rh',
-					 nexusUrl: '192.168.33.10:8081',
-					 nexusVersion: 'nexus3',
-					 protocol: 'http',
-					 repository: 'simpleass-realise',
-					 version: '1.0'
-                                           }
-                                    }       
-                                           
+	
+	stage ('Unit Test') {
+            steps{
+                sh 'mvn  test'
+            }
+        }
+	stage('Quality Gate Status Check'){
+                  steps{
+                      script{
+			      withSonarQubeEnv('sonar') {
+			      sh "mvn compile sonar:sonar"
+                       	     	}
+			     
+		    	       sh "mvn clean install"
+
+                 	}
+               	 }
+              } 
+	      
+                                                 
 
 }
 	 post {
