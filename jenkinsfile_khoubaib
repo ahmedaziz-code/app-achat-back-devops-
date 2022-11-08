@@ -35,7 +35,7 @@ stages{
     nexusUrl: '192.168.33.10:8081',
     groupId: 'tn.esprit.rh',
     version: 1.0,
-    repository: 'http://192.168.33.10:8081/repository/simpleass-realise/',
+    repository: 'simpleass-realise/',
     credentialsId: 'CredentialsId',
     artifacts: [
         [artifactId: achat,
