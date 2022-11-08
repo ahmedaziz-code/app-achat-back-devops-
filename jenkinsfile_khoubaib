@@ -57,7 +57,7 @@ stages{
                             artifacts: [
                                 [artifactId: 'achat',
                                 classifier: '',
-                                file: artifactPath.jar,
+                                file: artifactPath,
                                 type: pom.packaging],
                                 [artifactId: 'pom.achat',
                                 classifier: '',
