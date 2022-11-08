@@ -3,6 +3,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+Jenkinsfile
+Dockerfile
+docker-compose.yml
 
 ### STS ###
 .apt_generated
