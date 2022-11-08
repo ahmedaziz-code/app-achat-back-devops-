@@ -13,7 +13,7 @@ services:
 
 
   app_achat_back:
-    image : ahmedazizelj/achat_back
+    image : ahmedzarrai/achatapp111
     depends_on:
       - mysqldb
     restart: on-failure
@@ -34,7 +34,7 @@ services:
 
 
   app_achat_front :
-    image : ahmedazizelj/achat_front
+    image : ahmedzarrai/achat_front
     ports:
       - 4200:80
     depends_on :
@@ -44,4 +44,4 @@ services:
       - frontend-net
 networks:
   backend-net:
-  frontend-net
+  frontend-net:
