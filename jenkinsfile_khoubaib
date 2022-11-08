@@ -6,15 +6,6 @@ pipeline{
                jdk 'JAVA_HOME'
                maven 'M2_HOME'
                }
- environment {
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.33.10/:8081"
-        NEXUS_REPOSITORY = "simpleass-realise"
-        NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
-
-    }
-
         
 stages{
 	
@@ -59,14 +50,14 @@ stages{
                             nexusVersion: 'nexus3',
                             protocol: 'http',
                             nexusUrl: '192.168.33.10:8081',
-                            groupId: 'pom.tn.esprit.rh',
-                            version: 'pom.1.0',
+                            groupId: 'tn.esprit.rh',
+                            version: '1.0',
                             repository: 'simpleass-realise',
                             credentialsId: 'admin',
                             artifacts: [
-                                [artifactId: 'pom.achat',
+                                [artifactId: 'achat',
                                 classifier: '',
-                                file: artifactPath,
+                                file: target/achat-1.0.jar,
                                 type: pom.packaging],
                                 [artifactId: 'pom.achat',
                                 classifier: '',
