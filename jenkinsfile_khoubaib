@@ -21,18 +21,16 @@ stages{
 		  }
 		  }
 		  
-	stage('cleanig the project') {
-            steps{
-                sh 'mvn clean'
-            }
-        }
-            stage('JUnit/Mockito'){
-                steps {
-                sh "mvn -version"
-                sh "mvn -B -DskipTests clean package"
-                echo """Bravo! tous les tests sont pris en charge"""
-                }
-            }
+	tage('Testing process') {
+                              steps {
+                               script {
+                                sh 'echo "Test is processing ...."'
+                                sh 'mvn clean test'
+                               }
+
+                              }
+
+                            }
 
 	  stage('Quality Gate Status Check'){
                   steps{
