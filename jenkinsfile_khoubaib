@@ -30,12 +30,11 @@ stages{
          stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
-
                         nexusArtifactUploader artifacts: [
                         [
                         artifactId: 'achat',
                           classifier: '',
-                          file: 'target/achat-1.0.0.jar',
+                          file: 'target/achat.jar',
                           type: 'jar']
                           ],
                           credentialsId: 'nexus3',
@@ -45,10 +44,9 @@ stages{
                           protocol: 'http',
                           repository: 'http://192.168.33.10:8081/repository/simpleass-realise/',
                           version: '1.0.0'
-
-                    }
-        }
-}
+                     }
+               }
+           }
 
 }
 	 post {
