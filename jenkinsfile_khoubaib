@@ -33,18 +33,7 @@ stages{
                 sh 'mvn  test'
             }
         }
-	stage('Quality Gate Status Check'){
-                  steps{
-                      script{
-			      withSonarQubeEnv('sonar') {
-			      sh "mvn compile sonar:sonar"
-                       	     	}
-			     
-		    	       sh "mvn clean install"
 
-                 	}
-               	 }
-              } 
 	      
                                                  
 
