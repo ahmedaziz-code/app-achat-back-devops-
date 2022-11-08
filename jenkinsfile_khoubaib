@@ -29,19 +29,21 @@ stages{
 	
         stage("upload jar to nexus") {
                                            steps {
-                                         nexusArtifactUploader artifacts:
-                                          [[
-                                          artifactId: 'achat',
-                                          classifier: '',
-                                          file: 'target/springproject.jar',
-                                          type: 'jar']],
-                                          credentialsId: 'nexus3',
-                                          groupId: 'tn.esprit.rh',
-                                          nexusUrl: '192.168.33.10:8081',
-                                          nexusVersion: 'nexus3',
-                                          protocol: 'http',
-                                          repository: 'simpleass-realise/',
-                                          version: '1.0'
+                                         nexusArtifactUploader(
+    nexusVersion: 'nexus3',
+    protocol: 'http',
+    nexusUrl: '192.168.33.10:8081',
+    groupId: 'tn.esprit.rh',
+    version: 1.0,
+    repository: 'http://192.168.33.10:8081/repository/simpleass-realise/',
+    credentialsId: 'CredentialsId',
+    artifacts: [
+        [artifactId: achat,
+         classifier: '',
+         file: 'achat-' + 1.0 + '.jar',
+         type: 'jar']
+    ]
+ )
                                            }
                                            }
 
