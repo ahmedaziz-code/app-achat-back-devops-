@@ -33,7 +33,7 @@ stages{
                                           [[
                                           artifactId: 'achat',
                                           classifier: '',
-                                          file: 'target/spring.jar',
+                                          file: 'target/springproject.jar',
                                           type: 'jar']],
                                           credentialsId: 'nexus3',
                                           groupId: 'tn.esprit.rh',
