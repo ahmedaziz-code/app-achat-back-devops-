@@ -34,6 +34,13 @@ stages{
       		          }
             	}	
 
+         stage ('Unit Test') {
+            steps{
+               script {
+                 sh 'mvn  test'
+           }
+            }
+        }
 
 
            stage('Quality Gate Status Check'){
