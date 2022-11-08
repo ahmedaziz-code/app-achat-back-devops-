@@ -71,7 +71,7 @@ stages{
                 }
             }
         }
-	}}
+	}
 	 post {
                 success {
                      mail to: "laouinikhoubaib@gmail.com",
