@@ -27,28 +27,17 @@ stages{
                     }
                 }
 
-         stage ('Unit Test') {
-            steps {
-                sh '''mvn -version
-                mvn -B -DskipTests clean package'''
-                //sh 'mvn test'
-                echo """Bravo! tous les tests sont pris en charge"""
-                }
+
+      stage ('Unit Test') {
+              steps{
+               script {
+                 sh 'mvn  test'
+           }
+            }
         }
 
 
-           stage('Quality Gate Status Check'){
-                  steps{
-                      script{
-			      withSonarQubeEnv('sonar') {
-			      sh "mvn compile sonar:sonar"
-                       	     	}
-			     
-		    	       sh "mvn clean install"
-
-                 	}
-               	 }
-              }                                          
+                                        
 
 }
 	 post {
