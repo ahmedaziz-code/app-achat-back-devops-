@@ -33,14 +33,7 @@ stages{
         		sh 'mvn -B -DskipTests clean package'
       		          }
             	}	
-		
-        stage ('Unit Test') {
-               steps{
-                   script {
-                 sh 'mvn  test'
-                }
-            }
-          }
+
 
 
            stage('Quality Gate Status Check'){
