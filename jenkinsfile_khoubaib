@@ -45,7 +45,7 @@ stages{
 
       
                                         
-        stage("Publish to Nexus Repository Manager") {
+	 stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -56,19 +56,19 @@ stages{
                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                         nexusArtifactUploader(
-                            nexusVersion: NEXUS_VERSION,
-                            protocol: NEXUS_PROTOCOL,
-                            nexusUrl: NEXUS_URL,
-                            groupId: pom.groupId,
-                            version: pom.version,
-                            repository: NEXUS_REPOSITORY,
-                            credentialsId: NEXUS_CREDENTIAL_ID,
+                            nexusVersion: 'nexus3',
+                            protocol: 'http',
+                            nexusUrl: '192.168.33.10:8081',
+                            groupId: 'pom.tn.esprit.rh',
+                            version: 'pom.1.0',
+                            repository: 'simpleass-realise',
+                            credentialsId: 'admin',
                             artifacts: [
-                                [artifactId: pom.artifactId,
+                                [artifactId: 'pom.achat',
                                 classifier: '',
                                 file: artifactPath,
                                 type: pom.packaging],
-                                [artifactId: pom.artifactId,
+                                [artifactId: 'pom.achat',
                                 classifier: '',
                                 file: "pom.xml",
                                 type: "pom"]
@@ -80,7 +80,6 @@ stages{
                 }
             }
         }
-}
 	 post {
                 success {
                      mail to: "laouinikhoubaib@gmail.com",
