@@ -28,7 +28,7 @@ stages{
         }
 	
 
-        stage("Publish to Nexus") {stage("Publish to Nexus Repository Manager") {
+        stage("Publish to Nexus")  {
             steps {
                 script {
 
