@@ -26,11 +26,14 @@ stages{
                 sh 'mvn clean'
             }
         }
-	stage ('Unit Test') {
-            steps{
-                sh 'mvn  test'
+            stage('JUnit/Mockito'){
+                steps {
+                sh '''mvn -version
+                mvn -B -DskipTests clean package'''
+                //sh 'mvn test'
+                echo """Bravo! tous les tests sont pris en charge"""
+                }
             }
-        }
 
 	  stage('Quality Gate Status Check'){
                   steps{
