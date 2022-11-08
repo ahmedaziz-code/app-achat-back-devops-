@@ -50,8 +50,8 @@ stages{
                             nexusVersion: 'nexus3',
                             protocol: 'http',
                             nexusUrl: '192.168.33.10:8081',
-                            groupId: 'pom.tn.esprit.rh',
-                            version: 'pom.1.0',
+                            groupId: 'jar.tn.esprit.rh',
+                            version: 'jar.1.0',
                             repository: 'Stock',
                             credentialsId: 'admin',
                             artifacts: [
