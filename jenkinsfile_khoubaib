@@ -32,7 +32,7 @@ stages{
                                          nexusArtifactUploader artifacts: [
 					 [artifactId: 'achat',
 					 classifier: '',
-					 file: 'target/achat-1.0.jar',
+					 file: 'target/achat.jar',
 					 type: 'jar']],
 					 credentialsId: 'nexus3',
 					 groupId: 'tn.esprit.rh',
