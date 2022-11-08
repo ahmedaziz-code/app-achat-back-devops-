@@ -33,9 +33,9 @@ stage("upload war to nexus") {
                                           [[
                                           artifactId: 'achat',
                                           classifier: '',
-                                          file: 'target/springprojet.jar',
+                                          file: 'target/achat.jar',
                                            type: 'jar']],
-                                            credentialsId: 'nexus',
+                                            credentialsId: 'nexus3',
                                              groupId: 'tn.esprit.rh',
                                              nexusUrl: '192.168.33.10:8081',
                                               nexusVersion: 'nexus3',
