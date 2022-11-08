@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des stocks")
 @RequestMapping("/stock")
-@CrossOrigin(origins = {"4200", "80"})
+@CrossOrigin("*")
 public class StockRestController {
 
 	@Autowired

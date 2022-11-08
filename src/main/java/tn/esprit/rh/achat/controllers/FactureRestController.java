@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des factures")
 @RequestMapping("/facture")
-@CrossOrigin(origins = {"4200", "80"})
+@CrossOrigin("*")
 public class FactureRestController {
 
 
