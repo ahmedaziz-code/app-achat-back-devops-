@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des reglements")
 @RequestMapping("/reglement")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class ReglementRestController {
 
     @Autowired

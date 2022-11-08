@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des fournisseurss")
 @RequestMapping("/fournisseur")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class FournisseurRestController {
 
 	@Autowired
