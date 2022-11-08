@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des produits")
 @RequestMapping("/produit")
-@CrossOrigin("*")
+@CrossOrigin("80")
 public class ProduitRestController {
 
 	@Autowired
