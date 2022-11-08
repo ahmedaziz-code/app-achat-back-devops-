@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des secteurs activites")
 @RequestMapping("/secteurActivite")
-@CrossOrigin("80")
+@CrossOrigin("*")
 public class SecteurActiviteController {
 
 	@Autowired
