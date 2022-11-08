@@ -29,7 +29,7 @@ stages{
             stage('JUnit/Mockito'){
                 steps {
                 sh 'mvn -version'
-                mvn -B -DskipTests clean package'''
+                'mvn -B -DskipTests clean package'
                 echo """Bravo! tous les tests sont pris en charge"""
                 }
             }
