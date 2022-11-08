@@ -46,7 +46,7 @@ stages{
                         [
                         artifactId: 'achat',
                           classifier: '',
-                          file: 'target/achat-1.0.jar',
+                          file: 'target/springproject.jar',
                           type: 'war']
                           ],
                           credentialsId: 'nexus3',
@@ -54,7 +54,7 @@ stages{
                           nexusUrl: '192.168.33.10:8081',
                           nexusVersion: 'nexus3',
                           protocol: 'http',
-                          repository: 'http://192.168.33.10:8081/repository/simpleass-realise/',
+                          repository: 'simpleass-realise',
                           version: '1.0'
 
                     }
