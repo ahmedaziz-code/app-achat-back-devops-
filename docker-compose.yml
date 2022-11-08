@@ -44,4 +44,4 @@ services:
       - frontend-net
 networks:
   backend-net:
-  frontend-net
+  frontend-net:
