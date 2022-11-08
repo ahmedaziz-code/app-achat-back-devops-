@@ -33,15 +33,13 @@ stages{
         		sh 'mvn -B -DskipTests clean package'
       		          }
             	}	  
-	stage('Testing process') {
-                              steps {
-                sh '''mvn -version
-                mvn -B -DskipTests clean package'''
-                //sh 'mvn test'
-                echo """Bravo! tous les tests sont pris en charge"""
+        stage ('Unit Test') {
+               steps{
+                   script {
+                 sh 'mvn  test'
                 }
-
-                            }
+            }
+        }
 
 
                stage('Quality Gate Status Check'){
@@ -52,9 +50,7 @@ stages{
                        	     	}
 			      timeout(time: 1, unit: 'HOURS') {
 			      def qg = waitForQualityGate()
-				      if (qg.status != 'OK') {
-					   error "Pipeline aborted due to quality gate failure: ${qg.status}"
-				      }
+				      
                     		}
 		    	    sh "mvn clean install"
 
