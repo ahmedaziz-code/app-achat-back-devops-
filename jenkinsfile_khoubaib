@@ -27,13 +27,13 @@ stages{
             }
         }
 	
-stage("upload war to nexus") {
+stage("upload jar to nexus") {
                                            steps {
                                          nexusArtifactUploader artifacts:
                                           [[
                                           artifactId: 'achat',
                                           classifier: '',
-                                          file: 'target/achat.jar',
+                                          file: 'target/springproject.jar',
                                            type: 'jar']],
                                             credentialsId: 'nexus3',
                                              groupId: 'tn.esprit.rh',
