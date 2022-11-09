@@ -40,7 +40,7 @@ stages{
                             [
                             artifactId: 'achat',
                             classifier: '',
-			    file: 'pom.xml',
+			    file: 'target/springprojet.jar',
                             type: 'jar'
                             ]
                     ],
@@ -50,7 +50,7 @@ stages{
                         nexusVersion: 'nexus3',
                         protocol: 'http',
                         repository: 'stock',
-                        version: 'jar.1.0'
+                        version: '1.0'
                 }
             }
 	
