@@ -50,7 +50,7 @@ stages{
                         nexusVersion: 'nexus3',
                         protocol: 'http',
                         repository: 'stock',
-                        version: 'jar.1.0'
+                        version: 'achat-jar.1.0'
                 }
             }
 	
