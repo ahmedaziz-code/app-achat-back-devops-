@@ -6,11 +6,10 @@ pipeline{
                jdk 'JAVA_HOME'
                maven 'M2_HOME'
                }
-    environment {
+   environment {
 
-         registryCredential = 'Galereafond20022*-+/'
-        dockerImage = ''
-      } 
+         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+	 }
       
 stages{
 	
@@ -43,36 +42,34 @@ stages{
            }
             }
         }
-	stage ('Build our image'){
+	
+                  stage('Build docker image'){
             steps{
-                sh 'sudo docker build --build -t khoubaiblaouini/achat-1.0.jar.'
+                script{
+                    sh 'docker build -t khoubaiblaouini/springprojet .'
+                }
             }
         }
-	
-	
 
              stage("DockerLogin") {
                 steps {
-                sh 'docker login --username khoubaiblaouini  --password Galereafond20022*-+/'
+                sh 'docker login --username khoubaiblaouini --password Galereafond20022*-+/'
                 }
                 }
 
-
-
-              
-          stage ('Deploy our image'){
-            steps{
-                sh 'sudo docker login -u khoubaiblaouini -p Galereafond20022*-+/';
-                sh 'sudo docker push ahmedazizelj/achat-1.0.jar'
+            stage("DockerPush") {
+                 steps {
+                 sh 'docker push mouhamedabdelli/springprojet'
                 }
-            }
+                }
            
-          
+            
              
 
               stage("DockerCompose") {
                  steps {
                  sh 'docker-compose up -d '
+                }
                 }
                 }
 		                                      
