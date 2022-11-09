@@ -46,7 +46,7 @@ stages{
            stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t khoubaiblaouini/achat-1.0.jar'
+                    sh 'docker build -t achat-1.0.jar'
                 }
             }
         }
