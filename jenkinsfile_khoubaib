@@ -46,7 +46,7 @@ stages{
                   stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t khoubaiblaouini/springprojet .'
+                    sh 'docker build -t khoubaiblaouini/achat-1.0 .'
                 }
             }
         }
