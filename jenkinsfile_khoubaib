@@ -6,7 +6,12 @@ pipeline{
                jdk 'JAVA_HOME'
                maven 'M2_HOME'
                }
-	       
+    environment {
+
+        DOCKERHUB_USERNAME ="khoubaiblaouini"
+        DOCKERHUB_REPO = "stock"
+        TARGET_BRANCH = "stock" 
+    } 	       
 	
 stages{
 	
