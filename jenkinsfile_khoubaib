@@ -47,7 +47,7 @@ stages{
             
             steps{
              echo "building docker images"
-                buildImage("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO}:maven-${IMAGE_NAME}")
+                buildImage("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO}:maven-khoubaiblaouini/achat-1.0.jar")
             }
             
               
