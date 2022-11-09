@@ -33,13 +33,6 @@ stages{
            }
             }
         }
-           stage('Build docker image'){
-            steps{
-                script{
-                    sh 'docker build -t khoubaiblaouini/achat'
-                }
-            }
-        }
 	
 	stage('Upload War To Nexus'){
                 steps{
@@ -60,6 +53,15 @@ stages{
                         version: 'jar.1.0'
                 }
             }
+	
+           stage('Build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t khoubaiblaouini/achat'
+                }
+            }
+        }
+	
 	
 
              stage("DockerLogin") {
