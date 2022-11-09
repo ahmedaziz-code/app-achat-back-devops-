@@ -6,10 +6,12 @@ pipeline{
                jdk 'JAVA_HOME'
                maven 'M2_HOME'
                }
+	       
    environment {
 
          DOCKERHUB_CREDENTIALS = credentials('dockerhub')
 	 }
+	 
       
 stages{
 	
@@ -22,12 +24,11 @@ stages{
                         }
 		  }
 		  }
-
+		  
         stage('cleanig the project') {
             steps{
                 sh 'mvn clean'
             }
-
         }
        
        stage('Build') {
@@ -35,26 +36,27 @@ stages{
         		sh 'mvn -B -DskipTests clean package'
       		          }
             	}
+		
        stage ('Unit Test') {
               steps{
                script {
                  sh 'mvn  test'
-           }
+                }
             }
         }
-	stage('Quality Gate Status Check'){
+	
+      stage('Quality Gate Status Check'){
                   steps{
                       script{
 			      withSonarQubeEnv('sonar') {
 			      sh "mvn compile sonar:sonar"
-                       	     	}
-			     
+                       	     	}		     
 		    	       sh "mvn clean install"
-
                  	}
                	 }
               }  
-	stage('Upload Jar To Nexus'){
+	      
+      stage('Upload Jar To Nexus'){
                 steps{
                     nexusArtifactUploader artifacts: [
                             [
@@ -74,7 +76,7 @@ stages{
                 }
             }
 	
-                  stage('Build docker image'){
+      stage('Build docker image'){
             steps{
                 script{
                     sh 'docker build -t khoubaiblaouini/springprojet .'
@@ -82,31 +84,27 @@ stages{
             }
         }
 
-             stage("DockerLogin") {
+      stage("DockerLogin") {
                 steps {
                 sh 'docker login --username khoubaiblaouini --password Galereafond20022*-+/'
                 }
-                }
+            }
 
-            stage("DockerPush") {
+       stage("DockerPush") {
                  steps {
                  sh 'docker push khoubaiblaouini/springprojet'
                 }
-                }
+              }
            
-            
-             
-
-              stage("DockerCompose") {
+       stage("DockerCompose") {
                  steps {
                  sh 'docker-compose up -d '
                 }
-                }
-                
-		                                      
-         
+              }             		                                         
 	}
-	 post {
+	
+	
+        post {
                 success {
                      mail to: "laouinikhoubaib@gmail.com",
                             subject: "Build sucess",
