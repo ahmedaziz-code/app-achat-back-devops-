@@ -33,7 +33,35 @@ stages{
            }
             }
         }
-                                          
+           stage('Build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t khoubaiblaouini/springprojet .'
+                }
+            }
+        }
+
+             stage("DockerLogin") {
+                steps {
+                sh 'docker login --username khoubaiblaouini  --password Galereafond20022*-+/'
+                }
+                }
+
+             stage("DockerPush") {
+                   steps {
+                 sh 'docker push khoubaiblaouini/springprojet'
+                }
+                }
+           
+            
+             
+
+              stage("DockerCompose") {
+                 steps {
+                 sh 'docker-compose up -d '
+                }
+                }
+		                                      
          
 	}
 	 post {
