@@ -1,12 +1,12 @@
 package tn.esprit.rh.achat.controllers;
 
 import io.swagger.annotations.Api;
-import org.springframework.beans.BeanUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.rh.achat.dto.FactureDTO;
 import tn.esprit.rh.achat.entities.Facture;
-import tn.esprit.rh.achat.entities.FactureDTO;
 import tn.esprit.rh.achat.services.IFactureService;
 
 import java.util.Date;
@@ -16,21 +16,20 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des factures")
 @RequestMapping("/facture")
-@CrossOrigin("*")
 public class FactureRestController {
-
 
     @Autowired
     IFactureService factureService;
+    @Autowired
+    private ModelMapper modelMapper;
 
-    // http://localhost:8089/SpringMVC/facture/retrieve-all-factures
     @GetMapping("/retrieve-all-factures")
     @ResponseBody
     public List<Facture> getFactures() {
         return factureService.retrieveAllFactures();
     }
 
-    // http://localhost:8089/SpringMVC/facture/retrieve-facture/8
+
     @GetMapping("/retrieve-facture/{facture-id}")
     @ResponseBody
     public Facture retrieveFacture(@PathVariable("facture-id") Long factureId) {
@@ -40,10 +39,9 @@ public class FactureRestController {
 
     @PostMapping("/add-facture")
     @ResponseBody
-    public Facture addFacture(@RequestBody FactureDTO f)  {
-        Facture facture = new Facture();
-        BeanUtils.copyProperties(f, facture);
-        return factureService.addFacture(facture);
+    public Facture addFacture(@RequestBody FactureDTO facture) {
+        Facture persistentfacture = modelMapper.map(facture,  Facture.class);
+        return  factureService.addFacture( persistentfacture);
     }
 
     /*

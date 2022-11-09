@@ -30,16 +30,11 @@ public class ReglementServiceImpl implements IReglementService {
 	@Override
 	public Reglement retrieveReglement(Long id) {
 		return reglementRepository.findById(id).orElse(null);
-		
-
 	}
 
 	@Override
 	public List<Reglement> retrieveReglementByFacture(Long idFacture) {
-		return	reglementRepository.retrieveReglementByFacture(idFacture);
-
-		
-
+		return reglementRepository.retrieveReglementByFacture(idFacture);
 	}
 
 	@Override

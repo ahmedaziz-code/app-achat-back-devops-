@@ -1,12 +1,12 @@
 package tn.esprit.rh.achat.controllers;
 
 import io.swagger.annotations.Api;
-import org.springframework.beans.BeanUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.rh.achat.dto.ReglementDTO;
 import tn.esprit.rh.achat.entities.Reglement;
-import tn.esprit.rh.achat.entities.ReglementDTO;
 import tn.esprit.rh.achat.services.IReglementService;
 
 import java.util.Date;
@@ -15,37 +15,36 @@ import java.util.List;
 @RestController
 @Api(tags = "Gestion des reglements")
 @RequestMapping("/reglement")
-@CrossOrigin("*")
 public class ReglementRestController {
 
     @Autowired
     IReglementService reglementService;
 
+    @Autowired
+    private ModelMapper modelMapper;
 
-    // http://localhost:8089/SpringMVC/reglement/add-reglement
+
     @PostMapping("/add-reglement")
     @ResponseBody
     public Reglement addReglement(@RequestBody ReglementDTO r) {
-        Reglement reglement = new Reglement();
-        BeanUtils.copyProperties(r, reglement);
-        return reglementService.addReglement(reglement);
-
+        Reglement persistentR = modelMapper.map(r,  Reglement.class);
+        return reglementService.addReglement(persistentR);
     }
+
     @GetMapping("/retrieve-all-reglements")
     @ResponseBody
     public List<Reglement> getReglement() {
-        return  reglementService.retrieveAllReglements();
-
+        return reglementService.retrieveAllReglements();
     }
 
-    // http://localhost:8089/SpringMVC/reglement/retrieve-reglement/8
+
     @GetMapping("/retrieve-reglement/{reglement-id}")
     @ResponseBody
     public Reglement retrieveReglement(@PathVariable("reglement-id") Long reglementId) {
         return reglementService.retrieveReglement(reglementId);
     }
 
-    // http://localhost:8089/SpringMVC/reglement/retrieveReglementByFacture/8
+
     @GetMapping("/retrieveReglementByFacture/{facture-id}")
     @ResponseBody
     public List<Reglement> retrieveReglementByFacture(@PathVariable("facture-id") Long factureId) {
