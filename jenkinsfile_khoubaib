@@ -27,8 +27,12 @@ stages{
 
         }
        
-       
-      stage ('Unit Test') {
+       stage('Build') {
+      		    steps {
+        		sh 'mvn -B -DskipTests clean package'
+      		          }
+            	}
+       stage ('Unit Test') {
               steps{
                script {
                  sh 'mvn  test'
