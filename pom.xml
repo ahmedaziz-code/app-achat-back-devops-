@@ -119,7 +119,13 @@
 		</plugins>
 		
 	</build>
-
+<distributionManagement>
+		<repository>
+			<id>deploymentRepo</id>
+			<name>achat</name>
+			<url>http://localhost:8081/repository/stock/</url>
+		</repository>
+	</distributionManagement>
 
 
 
