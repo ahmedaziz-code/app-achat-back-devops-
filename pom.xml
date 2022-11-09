@@ -1,32 +1,3 @@
-Aller au contenu
-Rechercher ou accéder à…
-Demandes d' extraction s
-Problèmes
-Marché
-Explorer
- 
-@laouinikhoubaib 
-laouinikhoubaib
-/
-Projet_CICD
-Public
-dérivé de ABSnader/Project_CICD
-Code
-Demandes d'extraction
-Actions
-Projets
-wiki
-Sécurité
-Connaissances
-Réglages
-Project_CICD/pom.xml
-@ABSnader
-ABSnader added unit + mock tests ...
-Latest commit b9028de 8 days ago
- History
- 1 contributor
-126 lines (117 sloc)  3.44 KB
-
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -111,7 +82,12 @@ Latest commit b9028de 8 days ago
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>springprojet</finalName>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -144,57 +120,7 @@ Latest commit b9028de 8 days ago
 					</execution>
 				</executions>
 			</plugin>
-<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.sonarsource.scanner.maven</groupId>
-				<artifactId>sonar-maven-plugin</artifactId>
-				<version>3.4.0.905</version>
-			</plugin>
-			<!-- Jacoco -->
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${jacoco.version}</version>
-				<executions>
-					<execution>
-						<id>jacoco-initialize</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>jacoco-site</id>
-						<phase>package</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>build-helper-maven-plugin</artifactId>
-      <version>3.2.0</version>
-      <executions>
-      <execution>
-        <id>parse-version</id>
-        <goals>
-          <goal>parse-version</goal>
-        </goals>
-      </execution>
-    </executions>
-  </plugin>
+
 		</plugins>
 		<finalName>springprojet</finalName>
 	</build>
