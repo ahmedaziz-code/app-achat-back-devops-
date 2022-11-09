@@ -60,7 +60,7 @@ stages{
                         version: 'jar.1.0'
                 }
             }
-	}
+	
 
              stage("DockerLogin") {
                 steps {
