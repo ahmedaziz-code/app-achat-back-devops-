@@ -19,12 +19,6 @@ stages{
 		  }
 		  }
 
-       stage('Cleaning the project') {
-                 steps{
-                    sh "mvn -B -DskipTests clean  "
-                    }
-                }
-
 
       stage ('Unit Test') {
               steps{
@@ -40,7 +34,7 @@ stages{
                             [
                             artifactId: 'achat',
                             classifier: '',
-			    file: 'target/achat-1.0.jar',
+			    file: 'target/achat.jar',
                             type: 'jar'
                             ]
                     ],
