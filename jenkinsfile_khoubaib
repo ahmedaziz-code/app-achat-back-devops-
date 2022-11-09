@@ -40,7 +40,7 @@ stages{
                             [
                             artifactId: 'achat',
                             classifier: '',
-			    file: 'target/springproject.jar',
+			    file: 'target/springprojet.jar',
                             type: 'jar'
                             ]
                     ],
