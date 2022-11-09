@@ -58,8 +58,7 @@ stages{
                 }
 
 
-             stage("pushing docker image to dockerhub")
-        {
+
               
           stage ('Deploy our image'){
             steps{
@@ -68,7 +67,7 @@ stages{
                 }
             }
            
-     }       
+          
              
 
               stage("DockerCompose") {
