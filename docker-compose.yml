@@ -42,7 +42,7 @@ services:
     restart : on-failure
     networks :
       - frontend-net
- networks:
-  backend-net:
-  frontend-net:
+networks:
+  backend-net :
+  frontend-net :
 
