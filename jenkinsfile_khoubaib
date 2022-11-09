@@ -34,25 +34,7 @@ stages{
             }
         }
                                           
-            stage('Upload War To Nexus'){
-                steps{
-                    nexusArtifactUploader artifacts: [
-                            [
-                            artifactId: 'achat',
-                            classifier: '',
-			    file: 'pom.xml',
-                            type: 'pom'
-                            ]
-                    ],
-                     credentialsId: 'nexus3',
-                        groupId: 'tn.esprit.rh',
-                        nexusUrl: '192.168.33.10:8081',
-                        nexusVersion: 'nexus3',
-                        protocol: 'http',
-                        repository: 'stock',
-                        version: 'jar.1.0'
-                }
-            }
+         
 	}
 	 post {
                 success {
