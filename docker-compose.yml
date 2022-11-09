@@ -13,7 +13,7 @@ services:
 
 
   app_achat_back:
-    image : docker.io/ahmedazizelj/achat_back
+    image : ahmedazizelj/achat_back
     depends_on:
       - mysqldatabase
     restart: on-failure
@@ -34,7 +34,7 @@ services:
 
 
   app_achat_front :
-    image : docker.io/ahmedazizelj/achat_front
+    image : exemple/achat_front
     ports:
       - 80:80
     depends_on :
@@ -42,6 +42,7 @@ services:
     restart : on-failure
     networks :
       - frontend-net
-networks:
+ networks:
   backend-net:
-  frontend-net :
+  frontend-net:
+
