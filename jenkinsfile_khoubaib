@@ -20,7 +20,14 @@ stages{
 		  }
 		  }
 
+        stage('cleanig the project') {
+            steps{
+                sh 'mvn clean'
+            }
 
+        }
+       
+       
       stage ('Unit Test') {
               steps{
                script {
