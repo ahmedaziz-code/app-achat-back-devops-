@@ -6,6 +6,11 @@ pipeline{
                jdk 'JAVA_HOME'
                maven 'M2_HOME'
                }
+	       
+	 environment {
+
+         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+	 }
         
 stages{
 	
@@ -40,7 +45,7 @@ stages{
                             [
                             artifactId: 'achat',
                             classifier: '',
-			    file: 'target/achat.jar',
+			    file: 'pom.xml',
                             type: 'jar'
                             ]
                     ],
@@ -50,7 +55,7 @@ stages{
                         nexusVersion: 'nexus3',
                         protocol: 'http',
                         repository: 'stock',
-                        version: '1.0'
+                        version: 'jar.1.0'
                 }
             }
 	
