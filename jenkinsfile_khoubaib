@@ -41,7 +41,7 @@ stages{
                             artifactId: 'achat',
                             classifier: '',
 			    file: 'pom.xml',
-                            type: 'jar'
+                            type: 'pom'
                             ]
                     ],
                      credentialsId: 'nexus3',
