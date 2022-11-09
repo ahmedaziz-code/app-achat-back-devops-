@@ -8,9 +8,10 @@ pipeline{
                }
     environment {
 
-        DOCKERHUB_USERNAME ="khoubaiblaouini"
-        DOCKERHUB_REPO = "images-repo"
+         registryCredential = 'Galereafond20022*-+/'
+        dockerImage = ''
       } 
+      
 stages{
 	
 	 
@@ -42,15 +43,10 @@ stages{
            }
             }
         }
-	stage("build docker image")
-        {
-            
+	stage ('Build our image'){
             steps{
-             echo "building docker images"
-                buildImage("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO}:maven-khoubaiblaouini/achat-1.0.jar")
+                sh 'sudo docker build --build-arg IP=0.0.0.0 -t khoubaiblaouini/achat-1.0.jar.'
             }
-            
-              
         }
 	
 	
@@ -64,16 +60,12 @@ stages{
              stage("pushing docker image to dockerhub")
         {
               
-         steps{
-         echo "pushing docker images ... "
-            withCredentials([usernamePassword(credentialsId: 'docker-hub-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-               echo "login to dockerhub images repos"
-               sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
-               echo "push the images to dockerhub"
-               sh "docker push ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO}:maven-${IMAGE_NAME}"
-              }    
-        }           
-        }
+          stage ('Deploy our image'){
+            steps{
+                sh 'sudo docker login -u khoubaiblaouini -p Galereafond20022*-+/';
+                sh 'sudo docker push ahmedazizelj/achat-1.0.jar'
+                }
+            }
            
             
              
