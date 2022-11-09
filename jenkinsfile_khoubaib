@@ -57,6 +57,7 @@ stages{
                 }
                 }
 
+
              stage("pushing docker image to dockerhub")
         {
               
@@ -67,7 +68,7 @@ stages{
                 }
             }
            
-            
+     }       
              
 
               stage("DockerCompose") {
