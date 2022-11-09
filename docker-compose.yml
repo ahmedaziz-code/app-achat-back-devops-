@@ -34,7 +34,7 @@ services:
 
 
   app_achat_front :
-    image : exemple/achat_front
+    image : ahmedazizelj/achat_front
     ports:
       - 80:80
     depends_on :
