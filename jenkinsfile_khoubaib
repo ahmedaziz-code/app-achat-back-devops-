@@ -45,7 +45,7 @@ stages{
         }
 	stage ('Build our image'){
             steps{
-                sh 'sudo docker build --build-arg IP=0.0.0.0 -t khoubaiblaouini/achat-1.0.jar.'
+                sh 'sudo docker build --build-arg IP=192.168.33.10 -t khoubaiblaouini/achat-1.0.jar.'
             }
         }
 	
