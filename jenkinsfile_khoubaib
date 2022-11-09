@@ -6,11 +6,11 @@ pipeline{
                jdk 'JAVA_HOME'
                maven 'M2_HOME'
                }
-     environment {
+    environment {
 
-         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-	 }
-	
+        DOCKERHUB_USERNAME ="khoubaiblaouini"
+        DOCKERHUB_REPO = "images-repo"
+      } 
 stages{
 	
 	 
@@ -42,16 +42,15 @@ stages{
            }
             }
         }
-	
-
-	
-	
-           stage('Build docker image'){
+	stage("build docker image")
+        {
+            
             steps{
-                script{
-                    sh 'docker build -t khoubaiblaouini/achat-1.0.jar'
-                }
+             echo "building docker images"
+                buildImage("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO}:maven-${IMAGE_NAME}")
             }
+            
+              
         }
 	
 	
@@ -62,11 +61,19 @@ stages{
                 }
                 }
 
-             stage("DockerPush") {
-                   steps {
-                 sh 'docker push khoubaiblaouini/achat-1.0.jar'
-                }
-                }
+             stage("pushing docker image to dockerhub")
+        {
+              
+         steps{
+         echo "pushing docker images ... "
+            withCredentials([usernamePassword(credentialsId: 'docker-hub-login', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+               echo "login to dockerhub images repos"
+               sh "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
+               echo "push the images to dockerhub"
+               sh "docker push ${DOCKERHUB_USERNAME}/${DOCKERHUB_REPO}:maven-${IMAGE_NAME}"
+              }    
+        }           
+        }
            
             
              
