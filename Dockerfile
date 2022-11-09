@@ -1,4 +1,4 @@
 FROM openjdk:11
-ADD http://$IP:8081/repository/stock/tn/esprit/rh/achat/1.0/springprojet.jar springprojet.jar
-EXPOSE 8089
-ENTRYPOINT ["java", "-jar", "achat.jar"]
+EXPOSE 8082
+ADD target/springprojet.jar springprojet.jar
+ENTRYPOINT ["java","-jar","/springprojet.jar"]
