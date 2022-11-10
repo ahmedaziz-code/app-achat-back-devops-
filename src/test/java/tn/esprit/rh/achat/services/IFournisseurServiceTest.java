@@ -33,7 +33,7 @@ class IFournisseurServiceTest {
     FournisseurRepository fournisseurRepository;
     @InjectMocks
     FournisseurServiceImpl fournisseurServiceImp;
-
+//test
     private final FournisseurServiceImpl fourService = mock(FournisseurServiceImpl.class);
     Fournisseur fournisseur = new Fournisseur("code", "libelle", CategorieFournisseur.ORDINAIRE);
     DetailFournisseur df = new DetailFournisseur("aziz@email", new Date(), "bardo", "ADC123");
