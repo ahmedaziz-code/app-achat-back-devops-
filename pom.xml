@@ -142,7 +142,7 @@
 							<goal>report</goal>
 						</goals>
 					</execution>
-				</executions>
+				</executions>         
 			</plugin>
 		</plugins>
 		<finalName>devopsproject</finalName>
@@ -151,7 +151,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>admin</name>
-			<url>http://192.168.43.164:8081/repository/maven-releases/</url>
+			<url>http://172.20.10.6:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 </project>
