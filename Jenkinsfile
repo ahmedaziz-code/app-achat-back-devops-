@@ -23,28 +23,26 @@ pipeline {
                     url : 'https://github.com/ahmedaziz-code/app-achat.git';
             }
         }
-        stage('database connection') {
-            steps{
-                sh '''
-                sudo docker stop mysql || true
-                sudo docker restart mysql || true
-                '''
-            }
-        }
         stage('cleanig the project') {
             steps{
                 sh 'mvn clean'
             }
-
+            
         }
         stage ('artifact construction') {
             steps{
-                sh 'mvn  package'
+                sh '''
+                sudo docker restart mysql || true
+                mvn  package
+                '''
             }
         }
         stage ('Unit Test') {
             steps{
-                sh 'mvn  test'
+                sh '''
+                mvn  test
+                sudo docker stop mysql
+                '''
             }
         }
         stage ('SonarQube analysis') {
@@ -100,6 +98,16 @@ pipeline {
                 sh 'sudo docker push ahmedazizelj/achat_back'
                 }
             }
-
+        stage ('docker compose'){
+            steps{
+                sh '''
+                sudo docker pull ahmedazizelj/achat_back
+                sudo docker pull ahmedazizelj/achat_front
+                sudo docker-compose up -d 
+                sudo docker-compose ps
+                '''
+                }
+            }    
+            
     }
 }
