@@ -2,12 +2,7 @@ package tn.esprit.rh.achat.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-
-import java.util.List;
-import java.util.Optional;
-
-
+import java.util.*;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -18,11 +13,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.rh.achat.entities.CategorieProduit;
-
 import tn.esprit.rh.achat.repositories.CategorieProduitRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -72,10 +64,6 @@ class CategorieProduitServiceImplTest {
 	        Mockito.verify(categoryProduitRepository, Mockito.times(1)).deleteById(3L);
 	}
 
-	@Test
-	 @Order(3)
-	void testUpdateCategorieProduit() {
-	}
 
 	@Test
 	@Order(3)
